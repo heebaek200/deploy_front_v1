@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: black;
+      height: 100vh;
+    }
+
+    .star {
+      position: absolute;
+      font-size: 30px;
+
+      animation: sparkle 1.2s ease-in-out infinite;
+    }
+
+    .star::before,
+    .star::after {
+      content: "✦";
+
+      position: absolute;
+
+      color: #fff5a5;
+      font-size: 18px;
+
+      animation: small-sparkle 1s ease-in-out infinite alternate;
+    }
+
+    .star::before {
+      top: -5px;
+      left: -15px;
+    }
+
+    .star::after {
+      right: -18px;
+      bottom: 0;
+
+      animation-delay: 0.4s;
+    }
+
+    @keyframes sparkle {
+
+      0%,
+      100% {
+        transform: scale(0.85);
+        filter: brightness(0.8);
+        text-shadow: 0 0 5px #ffd700;
+      }
+
+      50% {
+        transform: scale(1.15);
+        filter: brightness(1.5);
+
+        text-shadow:
+          0 0 10px white,
+          0 0 25px #ffd700;
+      }
+    }
+
+    @keyframes small-sparkle {
+      from {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.3) rotate(90deg);
+      }
+    }
+
+    .planet {
+      width: 80px;
+      height: 80px;
+      background-color: #ffff00;
+      border-radius: 50%;
+
+      position: absolute;
+      top: 100px;
+      left: 200px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at 30% 30%, #fff9a0, transparent 25%),
+        repeating-linear-gradient(20deg,
+          #ffff00 0 12px,
+          #ffc400 13px 20px);
+
+      box-shadow:
+        inset -15px -8px 15px #ff8c00aa,
+        0 0 20px #ffff0088;
+
+      animation: rotate-planet 4s linear infinite;
+    }
+
+    /* 행성 표면의 작은 점 */
+    .planet::before {
+      content: "";
+
+      position: absolute;
+      top: 22px;
+      left: 14px;
+
+      width: 15px;
+      height: 10px;
+
+      border-radius: 50%;
+      background: #e89b00aa;
+
+      box-shadow:
+        32px 25px 0 #e89b00aa,
+        45px -5px 0 -2px #e89b00aa;
+    }
+
+    @keyframes rotate-planet {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spaceship {
+      position: fixed;
+      top: 50px;
+      right: 50px;
+      display: inline-block;
+
+      font-size: 70px;
+
+      animation: flying 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes flying {
+      from {
+        transform: translateY(5px);
+      }
+
+      to {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* 로켓의 불꽃 */
+    .spaceship::after {
+      content: "";
+
+      position: absolute;
+      left: -3px;
+      bottom: -15px;
+      z-index: -1;
+
+      width: 22px;
+      height: 45px;
+
+      background: linear-gradient(to bottom,
+          #ffffff,
+          #ffff00 25%,
+          #ff8c00 60%,
+          #ff2a00);
+
+      border-radius: 50% 50% 70% 70%;
+      box-shadow:
+        0 0 10px #ffff00,
+        0 0 20px #ff4500;
+
+      transform: rotate(45deg);
+      animation: flame 0.15s ease-in-out infinite alternate;
+    }
+
+    @keyframes flame {
+      from {
+        height: 35px;
+        opacity: 0.8;
+      }
+
+      to {
+        height: 50px;
+        opacity: 1;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="star" style="top: 50px; left: 100px;">✨</div>
+  <div class="star" style="top: 150px; left: 300px;">✨</div>
+  <div class="star" style="top: 300px; left: 450px;">✨</div>
+  <div class="star" style="top: 1200px; left: 150px;">✨</div>
+
+  <div class="planet"></div>
+  <div class="spaceship">🚀</div>
+</body>
+
+</html>
